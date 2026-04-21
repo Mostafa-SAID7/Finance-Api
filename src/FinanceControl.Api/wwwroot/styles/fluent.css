@@ -13,7 +13,7 @@
 .blob-1 {
     width: 300px;
     height: 300px;
-    background: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
+    background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
     top: -50px;
     right: -50px;
     animation-delay: 0s;
@@ -22,7 +22,7 @@
 .blob-2 {
     width: 250px;
     height: 250px;
-    background: linear-gradient(135deg, #8661c5 0%, #0078d4 100%);
+    background: linear-gradient(135deg, #bb88ff 0%, #00d4ff 100%);
     bottom: 100px;
     left: -50px;
     animation-delay: 2s;
@@ -31,7 +31,7 @@
 .blob-3 {
     width: 200px;
     height: 200px;
-    background: linear-gradient(135deg, #50e6ff 0%, #8661c5 100%);
+    background: linear-gradient(135deg, #00a8cc 0%, #bb88ff 100%);
     top: 50%;
     right: 10%;
     animation-delay: 4s;
@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(243, 243, 243, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(26, 31, 58, 0.98) 100%);
 }
 
 .hero-background {
@@ -84,7 +84,7 @@
     font-size: var(--font-size-4xl);
     font-weight: 700;
     margin-bottom: var(--spacing-md);
-    background: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
+    background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -130,7 +130,7 @@
 
 /* Features Section */
 .features {
-    background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
+    background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
 }
 
 .features-grid {
@@ -142,7 +142,7 @@
 }
 
 .feature-card {
-    background: var(--neutral-0);
+    background: var(--neutral-10);
     padding: var(--spacing-2xl);
     border-radius: var(--radius-lg);
     border: 1px solid var(--neutral-20);
@@ -192,7 +192,7 @@
 
 /* Quick Start Section */
 .quick-start {
-    background: linear-gradient(135deg, rgba(0, 120, 212, 0.05) 0%, rgba(80, 230, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 168, 204, 0.05) 100%);
 }
 
 .quick-start-content {
@@ -222,7 +222,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
     color: var(--neutral-0);
     font-weight: 700;
     flex-shrink: 0;
@@ -249,10 +249,9 @@
 }
 
 .info-card {
-    background: var(--neutral-0);
+    background: var(--neutral-10);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
-    border-top: 4px solid var(--primary-color);
     box-shadow: var(--shadow-md);
 }
 
@@ -279,7 +278,7 @@
 
 /* Tech Stack Section */
 .tech-stack {
-    background: linear-gradient(180deg, #ffffff 0%, #f3f3f3 100%);
+    background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
 }
 
 .tech-grid {
@@ -291,7 +290,7 @@
 }
 
 .tech-item {
-    background: var(--neutral-0);
+    background: var(--neutral-10);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     text-align: center;
@@ -321,7 +320,7 @@
 
 /* Status Section */
 .status {
-    background: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
+    background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
     color: var(--neutral-0);
     padding: var(--spacing-3xl) var(--spacing-lg);
 }
@@ -356,7 +355,7 @@
 
 /* CTA Section */
 .cta {
-    background: linear-gradient(135deg, #8661c5 0%, #0078d4 100%);
+    background: linear-gradient(135deg, #bb88ff 0%, #00d4ff 100%);
     color: var(--neutral-0);
     text-align: center;
     padding: var(--spacing-3xl) var(--spacing-lg);
@@ -389,7 +388,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(243, 243, 243, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(26, 31, 58, 0.98) 100%);
 }
 
 .error-background {
@@ -412,7 +411,7 @@
 .error-code {
     font-size: 120px;
     font-weight: 700;
-    background: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
+    background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -456,7 +455,7 @@
 }
 
 .suggestion-card {
-    background: var(--neutral-0);
+    background: var(--neutral-10);
     padding: var(--spacing-lg);
     border-radius: var(--radius-lg);
     border: 1px solid var(--neutral-20);

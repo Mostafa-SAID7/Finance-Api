@@ -3,34 +3,34 @@
 
 :root {
     /* Primary Colors */
-    --primary-color: #0078d4;
-    --primary-dark: #005a9e;
-    --primary-light: #50e6ff;
+    --primary-color: #00d4ff;
+    --primary-dark: #00a8cc;
+    --primary-light: #33e6ff;
     
-    /* Neutral Colors */
-    --neutral-0: #ffffff;
-    --neutral-10: #f3f3f3;
-    --neutral-20: #e8e8e8;
-    --neutral-30: #d0d0d0;
-    --neutral-40: #b3b3b3;
-    --neutral-50: #808080;
-    --neutral-60: #605e5c;
-    --neutral-70: #3b3b3b;
-    --neutral-80: #252423;
-    --neutral-90: #1a1a1a;
-    --neutral-100: #000000;
+    /* Neutral Colors - Dark Mode */
+    --neutral-0: #0a0e27;
+    --neutral-10: #1a1f3a;
+    --neutral-20: #252d4a;
+    --neutral-30: #3a4460;
+    --neutral-40: #4a5580;
+    --neutral-50: #6a7a9a;
+    --neutral-60: #8a9aaa;
+    --neutral-70: #aabaca;
+    --neutral-80: #d0d8e8;
+    --neutral-90: #e8f0ff;
+    --neutral-100: #ffffff;
     
     /* Accent Colors */
-    --accent-blue: #0078d4;
-    --accent-green: #107c10;
-    --accent-red: #d13438;
-    --accent-orange: #ff8c00;
-    --accent-purple: #8661c5;
+    --accent-blue: #00d4ff;
+    --accent-green: #00ff88;
+    --accent-red: #ff4466;
+    --accent-orange: #ffaa00;
+    --accent-purple: #bb88ff;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #0078d4 0%, #50e6ff 100%);
-    --gradient-accent: linear-gradient(135deg, #8661c5 0%, #0078d4 100%);
-    --gradient-warm: linear-gradient(135deg, #ff8c00 0%, #ff6b6b 100%);
+    --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+    --gradient-accent: linear-gradient(135deg, #bb88ff 0%, #00d4ff 100%);
+    --gradient-warm: linear-gradient(135deg, #ffaa00 0%, #ff4466 100%);
     
     /* Spacing */
     --spacing-xs: 0.25rem;
