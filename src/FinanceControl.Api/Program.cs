@@ -74,9 +74,25 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Serve static files from wwwroot
+app.UseStaticFiles();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Configure 404 fallback for static pages
+app.Use(async (context, next) =>
+{
+    await next();
+    
+    // If the response is 404 and the request is for a page (not an API endpoint or static file)
+    if (context.Response.StatusCode == 404 && !context.Request.Path.StartsWithSegments("/api"))
+    {
+        context.Request.Path = "/404.html";
+        await next();
+    }
+});
 
 app.Run();
 

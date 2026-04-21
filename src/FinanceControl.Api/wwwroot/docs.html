@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceControl API - Documentation</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/fluent.css">
+    <link rel="stylesheet" href="/styles/docs.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="navbar-brand">
+                    <span class="brand-icon">💰</span>
+                    <span class="brand-name">FinanceControl</span>
+                </div>
+                <div class="navbar-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/docs" class="nav-link active">API Docs</a>
+                    <a href="https://github.com/Mostafa-SAID7/Finance-Api" class="nav-link" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Docs Container -->
+        <div class="docs-container">
+            <!-- Sidebar -->
+            <aside class="docs-sidebar">
+                <div class="sidebar-header">
+                    <h3>API Documentation</h3>
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <h4>Getting Started</h4>
+                        <ul>
+                            <li><a href="#overview" class="nav-link-active">Overview</a></li>
+                            <li><a href="#authentication">Authentication</a></li>
+                            <li><a href="#errors">Error Handling</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-section">
+                        <h4>Endpoints</h4>
+                        <ul>
+                            <li><a href="#balance">Balance</a></li>
+                            <li><a href="#expenses">Expenses</a></li>
+                            <li><a href="#incomes">Incomes</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="https://swagger.io" target="_blank">Swagger UI</a></li>
+                            <li><a href="http://localhost:5012/swagger" target="_blank">Live Swagger</a></li>
+                            <li><a href="https://github.com/Mostafa-SAID7/Finance-Api" target="_blank">GitHub</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="docs-content">
+                <!-- Overview -->
+                <section id="overview" class="doc-section">
+                    <h2>API Overview</h2>
+                    <p>FinanceControl API is a modern RESTful API for managing personal finances. It provides endpoints for managing expenses, incomes, and calculating balance.</p>
+                    
+                    <div class="info-box">
+                        <h4>📌 Base URL</h4>
+                        <code>http://localhost:5012/api</code>
+                    </div>
+
+                    <h3>Features</h3>
+                    <ul class="feature-list">
+                        <li>RESTful API design</li>
+                        <li>JSON request/response format</li>
+                        <li>Comprehensive error handling</li>
+                        <li>Event-driven architecture</li>
+                        <li>Swagger/OpenAPI documentation</li>
+                    </ul>
+                </section>
+
+                <!-- Authentication -->
+                <section id="authentication" class="doc-section">
+                    <h2>Authentication</h2>
+                    <p>Currently, the API does not require authentication. All endpoints are publicly accessible.</p>
+                    <div class="warning-box">
+                        <h4>⚠️ Note</h4>
+                        <p>Authentication will be added in future versions. For production use, implement appropriate security measures.</p>
+                    </div>
+                </section>
+
+                <!-- Error Handling -->
+                <section id="errors" class="doc-section">
+                    <h2>Error Handling</h2>
+                    <p>The API uses standard HTTP status codes to indicate the success or failure of requests.</p>
+                    
+                    <table class="api-table">
+                        <thead>
+                            <tr>
+                                <th>Status Code</th>
+                                <th>Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>200</code></td>
+                                <td>OK - Request succeeded</td>
+                            </tr>
+                            <tr>
+                                <td><code>201</code></td>
+                                <td>Created - Resource created successfully</td>
+                            </tr>
+                            <tr>
+                                <td><code>400</code></td>
+                                <td>Bad Request - Invalid request parameters</td>
+                            </tr>
+                            <tr>
+                                <td><code>404</code></td>
+                                <td>Not Found - Resource not found</td>
+                            </tr>
+                            <tr>
+                                <td><code>500</code></td>
+                                <td>Internal Server Error - Server error</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Balance Endpoint -->
+                <section id="balance" class="doc-section">
+                    <h2>Balance Endpoint</h2>
+                    
+                    <div class="endpoint-card">
+                        <div class="endpoint-method get">GET</div>
+                        <div class="endpoint-path">/api/balance</div>
+                    </div>
+
+                    <h3>Description</h3>
+                    <p>Get the current balance calculated from all incomes and expenses.</p>
+
+                    <h3>Response</h3>
+                    <div class="code-block">
+                        <pre><code>{
+  "balance": 2500.00,
+  "totalIncomes": 3000.00,
+  "totalExpenses": 500.00
+}</code></pre>
+                    </div>
+
+                    <h3>Example</h3>
+                    <div class="code-block">
+                        <pre><code>curl -X GET http://localhost:5012/api/balance</code></pre>
+                    </div>
+                </section>
+
+                <!-- Expenses Endpoint -->
+                <section id="expenses" class="doc-section">
+                    <h2>Expenses Endpoint</h2>
+
+                    <!-- Create Expense -->
+                    <div class="endpoint-card">
+                        <div class="endpoint-method post">POST</div>
+                        <div class="endpoint-path">/api/expenses</div>
+                    </div>
+
+                    <h3>Create Expense</h3>
+                    <p>Create a new expense record.</p>
+
+                    <h4>Request Body</h4>
+                    <div class="code-block">
+                        <pre><code>{
+  "description": "Grocery shopping",
+  "amount": 50.00,
+  "date": "2026-04-21"
+}</code></pre>
+                    </div>
+
+                    <h4>Response</h4>
+                    <div class="code-block">
+                        <pre><code>{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "description": "Grocery shopping",
+  "amount": 50.00,
+  "date": "2026-04-21",
+  "type": "Groceries"
+}</code></pre>
+                    </div>
+
+                    <!-- List Expenses -->
+                    <div class="endpoint-card" style="margin-top: 2rem;">
+                        <div class="endpoint-method get">GET</div>
+                        <div class="endpoint-path">/api/expenses</div>
+                    </div>
+
+                    <h3>List Expenses</h3>
+                    <p>Get all expenses.</p>
+
+                    <h4>Response</h4>
+                    <div class="code-block">
+                        <pre><code>[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "description": "Grocery shopping",
+    "amount": 50.00,
+    "date": "2026-04-21",
+    "type": "Groceries"
+  }
+]</code></pre>
+                    </div>
+
+                    <!-- Get Single Expense -->
+                    <div class="endpoint-card" style="margin-top: 2rem;">
+                        <div class="endpoint-method get">GET</div>
+                        <div class="endpoint-path">/api/expenses/{id}</div>
+                    </div>
+
+                    <h3>Get Expense</h3>
+                    <p>Get a specific expense by ID.</p>
+
+                    <!-- Update Expense -->
+                    <div class="endpoint-card" style="margin-top: 2rem;">
+                        <div class="endpoint-method put">PUT</div>
+                        <div class="endpoint-path">/api/expenses/{id}</div>
+                    </div>
+
+                    <h3>Update Expense</h3>
+                    <p>Update an existing expense.</p>
+
+                    <!-- Delete Expense -->
+                    <div class="endpoint-card" style="margin-top: 2rem;">
+                        <div class="endpoint-method delete">DELETE</div>
+                        <div class="endpoint-path">/api/expenses/{id}</div>
+                    </div>
+
+                    <h3>Delete Expense</h3>
+                    <p>Delete an expense.</p>
+                </section>
+
+                <!-- Incomes Endpoint -->
+                <section id="incomes" class="doc-section">
+                    <h2>Incomes Endpoint</h2>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-method post">POST</div>
+                        <div class="endpoint-path">/api/incomes</div>
+                    </div>
+
+                    <h3>Create Income</h3>
+                    <p>Create a new income record.</p>
+
+                    <h4>Request Body</h4>
+                    <div class="code-block">
+                        <pre><code>{
+  "description": "Monthly salary",
+  "amount": 3000.00,
+  "date": "2026-04-21"
+}</code></pre>
+                    </div>
+
+                    <h4>Response</h4>
+                    <div class="code-block">
+                        <pre><code>{
+  "id": "550e8400-e29b-41d4-a716-446655440001",
+  "description": "Monthly salary",
+  "amount": 3000.00,
+  "date": "2026-04-21",
+  "type": "Salary"
+}</code></pre>
+                    </div>
+
+                    <p style="margin-top: 2rem;">Similar to expenses, you can also:</p>
+                    <ul class="feature-list">
+                        <li><code>GET /api/incomes</code> - List all incomes</li>
+                        <li><code>GET /api/incomes/{id}</code> - Get specific income</li>
+                        <li><code>PUT /api/incomes/{id}</code> - Update income</li>
+                        <li><code>DELETE /api/incomes/{id}</code> - Delete income</li>
+                    </ul>
+                </section>
+
+                <!-- Live Swagger -->
+                <section class="doc-section">
+                    <div class="info-box">
+                        <h4>🔗 Interactive API Documentation</h4>
+                        <p>For interactive API testing, visit the Swagger UI:</p>
+                        <a href="http://localhost:5012/swagger" class="btn btn-primary" target="_blank">Open Swagger UI</a>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FinanceControl</h4>
+                    <p>Modern personal finance management API</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="https://github.com/Mostafa-SAID7/Finance-Api" target="_blank">GitHub</a></li>
+                        <li><a href="https://github.com/Mostafa-SAID7/Finance-Api/issues" target="_blank">Issues</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="http://localhost:5012/swagger" target="_blank">Swagger UI</a></li>
+                        <li><a href="https://dotnet.microsoft.com" target="_blank">.NET Docs</a></li>
+                        <li><a href="https://docs.microsoft.com/aspnet" target="_blank">ASP.NET Core</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FinanceControl. Made with ❤️ by <a href="https://github.com/Mostafa-SAID7" target="_blank">Mostafa SAID</a></p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
