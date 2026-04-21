@@ -22,6 +22,11 @@
                     <a href="/docs" class="nav-link active">API Docs</a>
                     <a href="https://github.com/Mostafa-SAID7/Finance-Api" class="nav-link" target="_blank">GitHub</a>
                 </div>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
 
@@ -319,5 +324,40 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Sidebar toggle functionality
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const docsSidebar = document.querySelector('.docs-sidebar');
+        const docsContainer = document.querySelector('.docs-container');
+
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', () => {
+                docsSidebar.classList.toggle('sidebar-open');
+                sidebarToggle.classList.toggle('active');
+            });
+
+            // Close sidebar when clicking on a link
+            const sidebarLinks = docsSidebar.querySelectorAll('a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        docsSidebar.classList.remove('sidebar-open');
+                        sidebarToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (!e.target.closest('.docs-sidebar') && !e.target.closest('.sidebar-toggle')) {
+                        docsSidebar.classList.remove('sidebar-open');
+                        sidebarToggle.classList.remove('active');
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>

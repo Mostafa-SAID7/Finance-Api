@@ -187,7 +187,44 @@ li {
     min-height: 100vh;
 }
 
-/* Navigation Bar */
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle span {
+    width: 24px;
+    height: 2px;
+    background-color: var(--neutral-60);
+    border-radius: 2px;
+    transition: all var(--transition-fast);
+}
+
+.sidebar-toggle:hover span {
+    background-color: var(--primary-color);
+}
+
+.sidebar-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.sidebar-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.sidebar-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Navbar */
 .navbar {
     background-color: var(--neutral-0);
     border-bottom: 1px solid var(--neutral-20);
@@ -237,11 +274,13 @@ li {
     font-weight: 500;
     transition: color var(--transition-fast);
     position: relative;
+    text-decoration: none;
 }
 
 .nav-link:hover,
 .nav-link.active {
     color: var(--primary-color);
+    text-decoration: none;
 }
 
 .nav-link.active::after {
@@ -438,16 +477,19 @@ section {
     }
 
     .navbar-content {
-        flex-direction: column;
+        flex-direction: row;
         gap: var(--spacing-sm);
         padding: var(--spacing-sm) var(--spacing-md);
+        justify-content: space-between;
+        align-items: center;
     }
 
     .navbar-brand {
-        width: 100%;
-        justify-content: center;
+        width: auto;
+        justify-content: flex-start;
         gap: var(--spacing-sm);
         font-size: var(--font-size-base);
+        flex: 1;
     }
 
     .brand-icon {
@@ -459,11 +501,11 @@ section {
     }
 
     .navbar-links {
-        flex-direction: row;
-        gap: var(--spacing-sm);
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
+        display: none;
+    }
+
+    .sidebar-toggle {
+        display: flex;
     }
 
     .nav-link {
