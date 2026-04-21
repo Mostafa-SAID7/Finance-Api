@@ -100,18 +100,30 @@ app.Use(async (context, next) =>
     // If the response is 404 and the request is for a page (not an API endpoint)
     if (context.Response.StatusCode == 404 && !context.Request.Path.StartsWithSegments("/api"))
     {
+        var path = context.Request.Path.Value ?? "/";
+        
         // Check if it's a static file request (has extension)
-        var path = context.Request.Path.Value;
-        if (!string.IsNullOrEmpty(path) && !path.Contains("."))
+        if (!path.Contains("."))
         {
-            // It's a page request without extension, serve index.html or 404.html
+            // It's a page request without extension
             context.Response.StatusCode = 200;
             context.Response.ContentType = "text/html";
             
-            // Try to serve the requested page if it exists, otherwise serve 404.html
             var wwwrootPath = Path.Combine(app.Environment.ContentRootPath, "wwwroot");
-            var filePath = Path.Combine(wwwrootPath, path.TrimStart('/') + ".html");
+            string filePath;
             
+            // Handle root path specially
+            if (path == "/" || path == "")
+            {
+                filePath = Path.Combine(wwwrootPath, "index.html");
+            }
+            else
+            {
+                // Try to serve the requested page with .html extension
+                filePath = Path.Combine(wwwrootPath, path.TrimStart('/') + ".html");
+            }
+            
+            // Serve the file if it exists, otherwise serve 404.html
             if (File.Exists(filePath))
             {
                 await context.Response.SendFileAsync(filePath);
@@ -122,6 +134,7 @@ app.Use(async (context, next) =>
                 var notFoundPath = Path.Combine(wwwrootPath, "404.html");
                 if (File.Exists(notFoundPath))
                 {
+                    context.Response.StatusCode = 404;
                     await context.Response.SendFileAsync(notFoundPath);
                 }
             }
