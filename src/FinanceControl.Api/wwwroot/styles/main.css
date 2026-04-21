@@ -360,10 +360,11 @@ section {
 
 /* Footer */
 .footer {
-    background-color: var(--neutral-90);
-    color: var(--neutral-20);
+    background-color: var(--neutral-10);
+    color: var(--neutral-60);
     padding: var(--spacing-3xl) var(--spacing-lg);
     margin-top: auto;
+    border-top: 1px solid var(--neutral-20);
 }
 
 .footer-content {
@@ -376,12 +377,12 @@ section {
 }
 
 .footer-section h4 {
-    color: var(--neutral-0);
+    color: var(--neutral-80);
     margin-bottom: var(--spacing-md);
 }
 
 .footer-section p {
-    color: var(--neutral-30);
+    color: var(--neutral-60);
     margin-bottom: 0;
 }
 
@@ -395,23 +396,25 @@ section {
 }
 
 .footer-section a {
-    color: var(--neutral-30);
+    color: var(--neutral-60);
     transition: color var(--transition-fast);
+    text-decoration: none;
 }
 
 .footer-section a:hover {
-    color: var(--primary-light);
+    color: var(--primary-color);
 }
 
 .footer-bottom {
-    border-top: 1px solid var(--neutral-70);
+    border-top: 1px solid var(--neutral-20);
     padding-top: var(--spacing-lg);
     text-align: center;
-    color: var(--neutral-40);
+    color: var(--neutral-50);
 }
 
 .footer-bottom a {
-    color: var(--primary-light);
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
 /* Responsive Design */
