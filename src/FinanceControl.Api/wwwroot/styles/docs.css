@@ -347,6 +347,7 @@
         top: 60px;
         left: 0;
         width: 280px;
+        max-width: 85vw;
         height: calc(100vh - 60px);
         background-color: var(--neutral-10);
         border-right: 1px solid var(--neutral-20);
@@ -355,6 +356,7 @@
         transform: translateX(-100%);
         transition: transform var(--transition-base);
         overflow-y: auto;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     }
 
     .docs-sidebar.sidebar-open {

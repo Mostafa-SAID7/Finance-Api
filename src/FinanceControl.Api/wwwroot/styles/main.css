@@ -198,6 +198,7 @@ li {
     padding: var(--spacing-sm);
     align-items: center;
     justify-content: center;
+    transition: all var(--transition-fast);
 }
 
 .sidebar-toggle span {
@@ -206,14 +207,21 @@ li {
     background-color: var(--neutral-60);
     border-radius: 2px;
     transition: all var(--transition-fast);
+    display: block;
 }
 
 .sidebar-toggle:hover span {
     background-color: var(--primary-color);
 }
 
+.sidebar-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
 .sidebar-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(8px, 8px);
+    background-color: var(--primary-color);
 }
 
 .sidebar-toggle.active span:nth-child(2) {
@@ -222,6 +230,7 @@ li {
 
 .sidebar-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
+    background-color: var(--primary-color);
 }
 
 /* Navbar */
@@ -481,26 +490,32 @@ section {
 
     .navbar-content {
         flex-direction: row;
-        gap: var(--spacing-sm);
-        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
         justify-content: space-between;
         align-items: center;
+        width: 100%;
     }
 
     .navbar-brand {
         width: auto;
         justify-content: flex-start;
-        gap: var(--spacing-sm);
-        font-size: var(--font-size-base);
+        gap: var(--spacing-xs);
+        font-size: var(--font-size-sm);
         flex: 1;
+        min-width: 0;
     }
 
     .brand-icon {
         font-size: var(--font-size-lg);
+        flex-shrink: 0;
     }
 
     .brand-name {
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-sm);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .navbar-links {
@@ -509,6 +524,13 @@ section {
 
     .sidebar-toggle {
         display: flex;
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+
+    .sidebar-toggle span {
+        width: 20px;
+        height: 2px;
     }
 
     .nav-link {
@@ -551,27 +573,45 @@ section {
 
 @media (max-width: 600px) {
     .navbar-content {
-        flex-direction: column;
+        flex-direction: row;
         gap: var(--spacing-xs);
-        padding: var(--spacing-xs) var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-xs);
+        justify-content: space-between;
+        align-items: center;
     }
 
     .navbar-brand {
         gap: var(--spacing-xs);
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-xs);
+        flex: 1;
+        min-width: 0;
     }
 
     .brand-icon {
         font-size: var(--font-size-base);
+        flex-shrink: 0;
     }
 
     .brand-name {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-xs);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .navbar-links {
         gap: var(--spacing-xs);
         width: 100%;
+    }
+
+    .sidebar-toggle {
+        flex-shrink: 0;
+        padding: var(--spacing-xs);
+    }
+
+    .sidebar-toggle span {
+        width: 18px;
+        height: 2px;
     }
 
     .nav-link {
@@ -645,15 +685,36 @@ section {
 
     .navbar-content {
         padding: var(--spacing-xs) var(--spacing-xs);
+        gap: var(--spacing-xs);
     }
 
     .navbar-brand {
         font-size: var(--font-size-xs);
         gap: var(--spacing-xs);
+        flex: 1;
+        min-width: 0;
     }
 
     .brand-icon {
         font-size: var(--font-size-sm);
+        flex-shrink: 0;
+    }
+
+    .brand-name {
+        font-size: var(--font-size-xs);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .sidebar-toggle {
+        flex-shrink: 0;
+        padding: var(--spacing-xs);
+    }
+
+    .sidebar-toggle span {
+        width: 16px;
+        height: 2px;
     }
 
     .navbar-links {
