@@ -2,6 +2,65 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-04-21
+
+### Added
+
+#### Static Pages & UI
+- **Professional Static Pages**
+  - `wwwroot/index.html` - Home page with hero section, features showcase, quick start guide, technology stack, and status indicators
+  - `wwwroot/docs.html` - API documentation page with sidebar navigation, endpoint documentation, and interactive examples
+  - `wwwroot/404.html` - Custom error page with helpful suggestions and navigation links
+
+- **Microsoft Fluent Design System Styling**
+  - `wwwroot/styles/main.css` - Base styles, typography, colors, spacing system, and layout components (1,100+ lines)
+  - `wwwroot/styles/fluent.css` - Fluent Design gradients, animations, and cinematic effects (800+ lines)
+  - `wwwroot/styles/docs.css` - Documentation-specific styles for sidebar, code blocks, and tables (600+ lines)
+
+#### Design Features
+- Gradient blobs with smooth floating animations
+- Responsive design for desktop, tablet, and mobile
+- Smooth transitions and hover effects
+- Glassmorphism effects on status cards
+- Professional color palette with Microsoft Blue (#0078d4) and Cyan (#50e6ff)
+- Feature cards with interactive hover states
+- Code blocks with syntax highlighting
+- API endpoint cards with method badges (GET, POST, PUT, DELETE)
+- Info and warning boxes for documentation
+
+#### Middleware
+- Static file serving via `app.UseStaticFiles()`
+- 404 fallback middleware to serve `404.html` for non-existent routes
+- Preserves API endpoints (doesn't interfere with `/api/*` routes)
+
+### Changed
+
+#### Program.cs
+- Added `app.UseStaticFiles()` middleware for serving static files
+- Added 404 fallback middleware to handle non-existent routes gracefully
+- Middleware order: HTTPS → Static Files → Authorization → Controllers → 404 Fallback
+
+### Documentation
+
+#### Updated Files
+- `CHANGELOG.md` - Added v2.1.0 release notes
+
+### Performance
+
+- Static files served directly from wwwroot without processing
+- CSS files optimized for fast loading
+- Responsive images and lazy loading ready
+- Minimal JavaScript for maximum performance
+
+### Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+---
+
 ## [2.0.0] - 2026-04-21
 
 ### Added
