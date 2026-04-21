@@ -30,10 +30,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add Redis
+// Add Redis with graceful fallback
 var redisConnection = builder.Configuration.GetConnectionString("Redis") ?? "localhost:6379";
-builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnection));
-builder.Services.AddScoped<ICacheService, CacheService>();
+try
+{
+    var options = ConfigurationOptions.Parse(redisConnection);
+    options.AbortOnConnectFail = false;
+    options.ConnectTimeout = 5000;
+    options.SyncTimeout = 5000;
+    
+    var multiplexer = ConnectionMultiplexer.Connect(options);
+    builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
+    builder.Services.AddScoped<ICacheService, CacheService>();
+    Log.Information("Redis connection configured successfully");
+}
+catch (Exception ex)
+{
+    Log.Warning(ex, "Failed to configure Redis. Cache service will be disabled. Redis connection: {RedisConnection}", redisConnection);
+    // Register a no-op cache service if Redis is unavailable
+    builder.Services.AddScoped<ICacheService, NoCacheService>();
+}
 
 // Add Database
 builder.Services.AddDbContext<FinanceControlDbContext>(options =>

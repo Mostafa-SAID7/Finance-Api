@@ -1,15 +1,14 @@
 using FinanceControl.Api.Infra.Data;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace FinanceControl.IntegrationTests.Infrastructure;
 
-public class LoggingIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
+public class LoggingIntegrationTests : IClassFixture<FinanceControlApplicationFactory>
 {
-    private readonly WebApplicationFactory<Program> _factory;
+    private readonly FinanceControlApplicationFactory _factory;
 
-    public LoggingIntegrationTests(WebApplicationFactory<Program> factory)
+    public LoggingIntegrationTests(FinanceControlApplicationFactory factory)
     {
         _factory = factory;
     }
@@ -42,7 +41,7 @@ public class LoggingIntegrationTests : IClassFixture<WebApplicationFactory<Progr
     }
 
     [Fact]
-    public async Task Logger_IsConfigured_InDependencyInjection()
+    public void Logger_IsConfigured_InDependencyInjection()
     {
         // Arrange
         using var scope = _factory.Services.CreateScope();

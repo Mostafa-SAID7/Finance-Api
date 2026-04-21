@@ -1,25 +1,29 @@
 using FinanceControl.Api.Infra;
 using StackExchange.Redis;
+using Testcontainers.Redis;
 using Xunit;
 
 namespace FinanceControl.IntegrationTests.Infrastructure;
 
 public class CacheServiceTests : IAsyncLifetime
 {
+    private readonly RedisContainer _redisContainer = new RedisBuilder().Build();
     private IConnectionMultiplexer? _redis;
     private ICacheService? _cacheService;
     private ILogger<CacheService>? _logger;
 
     public async Task InitializeAsync()
     {
-        _redis = await ConnectionMultiplexer.ConnectAsync("localhost:6379");
+        await _redisContainer.StartAsync();
+        
+        var connectionString = _redisContainer.GetConnectionString();
+        var options = ConfigurationOptions.Parse(connectionString);
+        options.AbortOnConnectFail = false;
+        
+        _redis = await ConnectionMultiplexer.ConnectAsync(options);
         var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
         _logger = loggerFactory.CreateLogger<CacheService>();
         _cacheService = new CacheService(_redis, _logger);
-        
-        // Clear all keys before test
-        var server = _redis!.GetServer(_redis.GetEndPoints().First());
-        await server.FlushDatabaseAsync();
     }
 
     public async Task DisposeAsync()
@@ -28,6 +32,7 @@ public class CacheServiceTests : IAsyncLifetime
         {
             await _redis.DisposeAsync();
         }
+        await _redisContainer.StopAsync();
     }
 
     [Fact]
