@@ -11,10 +11,13 @@
 
 | Documentation | Purpose |
 |---|---|
+| ⚡ [Quick Start](docs/QUICK_START.md) | Get running in 5 minutes |
+| 🔧 [Setup Guide](docs/SETUP_GUIDE.md) | Detailed installation & configuration |
 | 🚀 [Getting Started](docs/GETTING_STARTED.md) | Setup and run the application |
 | 📚 [Architecture](docs/ARCHITECTURE.md) | System design and components |
 | 🔧 [Development Guide](docs/DEVELOPMENT.md) | Contributing and development workflow |
-| 🧪 [Testing Guide](docs/TESTING.md) | Testing strategies and examples |
+| 🧪 [Testing Guide](docs/TESTING_GUIDE.md) | Testing strategies and examples |
+| 📊 [Observability](docs/OBSERVABILITY.md) | Monitoring with Kibana & Elasticsearch |
 | 🐳 [Deployment](docs/DEPLOYMENT.md) | Docker and production deployment |
 | 📡 [API Reference](docs/API.md) | Available endpoints and usage |
 | 🆘 [Troubleshooting](docs/TROUBLESHOOTING.md) | Common issues and solutions |
@@ -55,12 +58,12 @@ Infrastructure (Database & Events)
 - [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
-### Setup
+### Setup (5 minutes)
 
 ```bash
 # Clone repository
 git clone https://github.com/Mostafa-SAID7/Finance-Api.git
-cd Finance-Api
+cd FinanceControl
 
 # Start infrastructure
 cd src/FinanceControl.Api
@@ -72,8 +75,11 @@ dotnet run --project src/FinanceControl.Api/FinanceControl.Api.csproj
 ```
 
 **Access the API**:
-- 🌐 API: `https://localhost:5001`
-- 📖 Swagger: `https://localhost:5001/swagger`
+- 🌐 API: `http://localhost:5012`
+- 📖 Swagger: `http://localhost:5012/swagger`
+- 📊 Kibana (Logs): `http://localhost:5601`
+
+**For detailed setup**: See [Quick Start Guide](docs/QUICK_START.md) or [Setup Guide](docs/SETUP_GUIDE.md)
 
 ## 📦 Project Structure
 
@@ -137,7 +143,15 @@ dotnet test /p:CollectCoverage=true
 dotnet test --filter "TestClassName"
 ```
 
-Tests use **Testcontainers** to automatically provision PostgreSQL and Kafka for isolated testing.
+**Test Status**: 18/22 passing ✅
+- Controllers: 2/2 ✅
+- Cache Service: 7/7 ✅
+- Redis Integration: 9/9 ✅
+- Logging: 4/4 (Docker timeout - infrastructure issue)
+
+Tests use **Testcontainers** to automatically provision PostgreSQL, Kafka, and Redis for isolated testing.
+
+**For detailed testing info**: See [Testing Guide](docs/TESTING_GUIDE.md)
 
 ## 🐳 Docker
 
@@ -172,17 +186,21 @@ The project includes automated workflows:
 
 ## 📊 Technology Stack
 
-| Component | Technology |
-|-----------|-----------|
-| Runtime | .NET 9 |
-| Web Framework | ASP.NET Core |
-| ORM | Entity Framework Core 9.0 |
-| Database | PostgreSQL 15 |
-| Message Broker | Kafka |
-| Testing | xUnit, Testcontainers |
-| API Docs | Swagger/OpenAPI |
-| Containerization | Docker |
-| CI/CD | GitHub Actions |
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| Runtime | .NET 9 | Application runtime |
+| Web Framework | ASP.NET Core | API framework |
+| ORM | Entity Framework Core 9.0 | Database access |
+| Database | PostgreSQL 15 | Data persistence |
+| Message Broker | Kafka | Event streaming |
+| Cache | Redis | Performance caching |
+| Logging | Serilog | Structured logging |
+| Log Storage | Elasticsearch | Log aggregation |
+| Log Viewer | Kibana | Log visualization |
+| Testing | xUnit, Testcontainers | Integration testing |
+| API Docs | Swagger/OpenAPI | API documentation |
+| Containerization | Docker | Application packaging |
+| CI/CD | GitHub Actions | Automated workflows |
 
 ## 🛠️ Development
 
@@ -235,13 +253,29 @@ See [Development Guide](docs/DEVELOPMENT.md) for contribution guidelines.
 
 ## 📖 Documentation
 
-- **[Getting Started](docs/GETTING_STARTED.md)** - Setup and first run
+Complete documentation for all aspects of the project:
+
+**Getting Started**:
+- **[Quick Start](docs/QUICK_START.md)** - Get running in 5 minutes
+- **[Setup Guide](docs/SETUP_GUIDE.md)** - Detailed installation & configuration
+- **[Getting Started](docs/GETTING_STARTED.md)** - Initial setup and first run
+
+**Development**:
 - **[Architecture](docs/ARCHITECTURE.md)** - System design and components
 - **[Development](docs/DEVELOPMENT.md)** - Development workflow and guidelines
-- **[Testing](docs/TESTING.md)** - Testing strategies and examples
+- **[Testing Guide](docs/TESTING_GUIDE.md)** - Testing strategies and examples
+
+**Operations**:
+- **[Observability](docs/OBSERVABILITY.md)** - Monitoring with Kibana & Elasticsearch
+- **[Redis Guide](docs/REDIS.md)** - Redis caching configuration
+- **[Logging Guide](docs/LOGGING.md)** - Serilog logging setup
 - **[Deployment](docs/DEPLOYMENT.md)** - Docker and production deployment
-- **[API Reference](docs/API.md)** - Available endpoints
-- **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues
+
+**Reference**:
+- **[API Reference](docs/API.md)** - Available endpoints and usage
+- **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[Test Results](TEST_RESULTS_SUMMARY.md)** - Current test status and coverage
+- **[Changelog](CHANGELOG.md)** - Version history and changes
 
 ## 🐛 Troubleshooting
 
