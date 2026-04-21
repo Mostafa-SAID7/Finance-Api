@@ -74,23 +74,58 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Serve static files from wwwroot
+// Serve static files from wwwroot (must be before routing)
 app.UseStaticFiles();
+
+// Add routing before authorization
+app.UseRouting();
 
 app.UseAuthorization();
 
+// Map API controllers
 app.MapControllers();
 
-// Configure 404 fallback for static pages
+// Configure 404 fallback for static pages - must be AFTER routing and controllers
 app.Use(async (context, next) =>
 {
+    // Skip if response has already started
+    if (context.Response.HasStarted)
+    {
+        await next();
+        return;
+    }
+
     await next();
     
-    // If the response is 404 and the request is for a page (not an API endpoint or static file)
+    // If the response is 404 and the request is for a page (not an API endpoint)
     if (context.Response.StatusCode == 404 && !context.Request.Path.StartsWithSegments("/api"))
     {
-        context.Request.Path = "/404.html";
-        await next();
+        // Check if it's a static file request (has extension)
+        var path = context.Request.Path.Value;
+        if (!string.IsNullOrEmpty(path) && !path.Contains("."))
+        {
+            // It's a page request without extension, serve index.html or 404.html
+            context.Response.StatusCode = 200;
+            context.Response.ContentType = "text/html";
+            
+            // Try to serve the requested page if it exists, otherwise serve 404.html
+            var wwwrootPath = Path.Combine(app.Environment.ContentRootPath, "wwwroot");
+            var filePath = Path.Combine(wwwrootPath, path.TrimStart('/') + ".html");
+            
+            if (File.Exists(filePath))
+            {
+                await context.Response.SendFileAsync(filePath);
+            }
+            else
+            {
+                // Serve 404.html for non-existent pages
+                var notFoundPath = Path.Combine(wwwrootPath, "404.html");
+                if (File.Exists(notFoundPath))
+                {
+                    await context.Response.SendFileAsync(notFoundPath);
+                }
+            }
+        }
     }
 });
 
