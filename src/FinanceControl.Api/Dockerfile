@@ -1,14 +1,14 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
-COPY ["FinanceControl.Api/FinanceControl.Api.csproj", "FinanceControl.Api/"]
-RUN dotnet restore "FinanceControl.Api/FinanceControl.Api.csproj"
+COPY ["src/FinanceControl.Api/FinanceControl.Api.csproj", "src/FinanceControl.Api/"]
+RUN dotnet restore "src/FinanceControl.Api/FinanceControl.Api.csproj"
 COPY . .
-WORKDIR "/src/FinanceControl.Api"
+WORKDIR "/src/src/FinanceControl.Api"
 RUN dotnet build "FinanceControl.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
